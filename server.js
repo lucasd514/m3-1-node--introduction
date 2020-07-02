@@ -17,17 +17,10 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
-  .get("/monkey-message", (req, res) => {
-    const messages = [
-      "Don’t monkey around with me.",
-      "If you pay peanuts, you get monkeys.",
-      "I fling 💩 at you!",
-      "🙊",
-      "🙈",
-      "🙉",
-    ];
-    const oneFour = Math.floor(Math.random() * 4);
-    const message = { author: "monkey", text: messages[oneFour] };
+  .get("/parrot-message", (req, res) => {
+    console.log(req.query);
+    const pollyAnswer = req.query.text;
+    const message = { author: "parrot", text: pollyAnswer };
 
     const randomTime = Math.floor(Math.random() * 3000);
     setTimeout(() => {
