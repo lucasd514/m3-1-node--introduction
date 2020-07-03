@@ -17,10 +17,25 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
-  .get("/parrot-message", (req, res) => {
+  .get("/bot-message", (req, res) => {
     console.log(req.query);
-    const pollyAnswer = req.query.text;
-    const message = { author: "parrot", text: pollyAnswer };
+    const roboAnswer = req.query.text;
+    const getBotMessage = (text) => {
+      const commonGreetings = ["hi", "hello", "howdy"];
+      const commonGoodbyes = ["bye", "peace", "ciao"];
+      let botMsg = "";
+      if (commonGreetings.includes(text.toLowerCase())) {
+        botMsg = "Hello!";
+        return botMsg;
+      } else if (commonGoodbyes.includes(text.toLowerCase())) {
+        botMsg = "Salaam my brother, peace be upon you and yours!";
+      } else {
+        botMsg = "bzzzzt " + text;
+      }
+      return botMsg;
+    };
+
+    const message = { author: "bot", text: getBotMessage(roboAnswer) };
 
     const randomTime = Math.floor(Math.random() * 3000);
     setTimeout(() => {
